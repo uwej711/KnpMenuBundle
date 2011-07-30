@@ -990,13 +990,7 @@ class MenuItem implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function getIsCurrentAncestor()
     {
-        foreach ($this->getChildren() as $child) {
-            if ($child->getIsCurrent() || $child->getIsCurrentAncestor()) {
-                return true;
-            }
-        }
-
-        return false;
+        return (substr($this->getCurrentUri(), 0, strlen($this->getUri())) === $this->getUri());
     }
 
     /**
